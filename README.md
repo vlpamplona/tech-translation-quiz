@@ -10,7 +10,7 @@ Um quiz interativo em Python que utiliza a Inteligência Artificial do Google (G
 
 ## 🛠️ Tecnologias Utilizadas
 
-*   **Python 3.10+**
+*   **Python 3.9+**
 *   **Google Generative AI** (`google-generativeai`)
 *   **Modelo:** `gemini-2.5-flash` (Utilizando as capacidades mais recentes e experimentais da API do Google para maior velocidade e precisão).
 *   **Regex & JSON:** Para parsing e limpeza de dados da IA.
