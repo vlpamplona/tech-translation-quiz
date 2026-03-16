@@ -1,3 +1,4 @@
+import random
 import re
 import google.generativeai as genai
 import json
@@ -13,16 +14,21 @@ def obtem_lista_perguntas():
     # Usando o modelo disponível
     model = genai.GenerativeModel('gemini-2.5-flash')
     
-    # Prompt para obter os termos, altere a quantidade (10) de termos que serao retornados
-    # a cada acesso. 
-    prompt = """
-    Gere uma lista com 10 termos técnicos de TI. 
-    Retorne APENAS um JSON no seguinte formato de lista:
+    # para tentar evitar que os termos venham repetidos a cada acesso à IA
+    # por ser um codigo apenas para estudo e aprendizado, essa solucao é funcional
+    categorias = ["DevOps", "Banco de Dados", "Frontend", "Backend","Cibersegurança", 
+                  "Cloud Computing", "Inteligência Artificial", "Hardware"]
+    categoria_da_vez = random.choice(categorias)
+    
+    # altere a quantidade que desejar, dos termos que serao retornados a cada acesso
+    prompt = f"""
+    Gere uma lista com 10 termos técnicos aleatórios, focando na área de {categoria_da_vez}
+    Garanta que não foram citados anteriormente.
+    Retorne APENAS um JSON no seguinte formato:
     [
-      {"palavra": "Termo em Português", "traducao": "Termo em Inglês"},
-      ...
+    {{"palavra": "Termo em Português", "traducao": "Termo em Inglês"}}
     ]
-    Evite definições longas, foque na tradução direta do vocabulário técnico.
+    Evite definições, foque na tradução direta.
     """
     
     try:
