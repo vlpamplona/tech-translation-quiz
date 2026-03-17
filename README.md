@@ -26,7 +26,7 @@ Para rodar o projeto, é necessário uma chave própria:
 3.  Copie e cole a API KEY no código python (main.py)
 
 ### 2. Como Funciona
-O script faz uma chamada ao modelo gemini-2.5-flash para obter a lista de termos. Se a cota gratuita do Google estiver esgotada no momento, o código captura o erro e avisa ao usuário.
+O script faz uma chamada ao modelo gemini-2.5-flash para obter a lista de termos. Se a cota gratuita do Google estiver esgotada no momento, o código captura o erro e avisa ao usuário. Se a cota estiver disponível, a chamada retorna os termos em português e suas respectivas traduções em ingles. Em seguida, o usuario será perguntado como se diz o termo em ingles; o usuário digita a resposta, o código verifica se a resposta está correta ou não. Se a resposta for INCORRETA, será mostrado ao usuário qual o termo correto em ingles. No final será gerado um resumo dos erros e acertos. Assim, o usuário pode treinar seus conhecimentos em inglês dos termos de TI
 
 ### 3. Instalação Google Generative AI
 
