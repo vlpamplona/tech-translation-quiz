@@ -3,6 +3,8 @@ import re
 import sys
 import google.generativeai as genai
 import json
+from gtts import gTTS # biblioteca para audio Google Text-to-Speech
+import os
 
 # Sua Chave
 GOOGLE_API_KEY = "COLE_AQUI_SUA_API_KEY"
@@ -28,11 +30,11 @@ def obtem_termos():
     categoria_da_vez = random.choice(categorias)
     
     
-    # a ideia aqui é trazer uma qtd de termos por acesso, para que o usuário possa responder o quiz
+    # a ideia aqui é trazer uma qt de termos por acesso, para que o usuário possa responder o quiz
     # sem fazer um novo acesso, evitando exceder a quota na api
     # altere a quantidade que desejar dos termos que serao retornados a cada acesso
     prompt = f"""
-    Gere uma lista com EXATAMENTE 3 termos técnicos aleatórios, focando na área de {categoria_da_vez}
+    Gere uma lista com EXATAMENTE 5 termos técnicos aleatórios, focando na área de {categoria_da_vez}
     Exclua os seguintes termos {historico_termos}.
     Retorne APENAS um JSON no seguinte formato:
     [
@@ -57,6 +59,17 @@ def obtem_termos():
             print(f"Erro na conexão: {e}")
         return None
 
+def ouvir_pronuncia(texto):
+    tts = gTTS(text=texto, lang='en')
+    tts.save("audio.mp3")
+    
+    if os.name == "nt":
+        os.system("start audio.mp3") # para windows
+    else:
+        os.system("mpg123 -q audio.mp3") # para linux/mac
+    
+    os.remove("audio.mp3")
+    
 def iniciar_quiz():
     global historico_termos
     global score
@@ -93,6 +106,11 @@ def iniciar_quiz():
             score += 1
         else:
             print(f"❌ Errado! O termo correto é: {traducao}")
+        
+        # opcao para o usuario ouvir ou nao a pronuncia em ingles
+        opcao = input("\n🔊 Deseja ouvir a pronúncia? (S/N): ").strip().upper()
+        if opcao == "S":
+            ouvir_pronuncia(traducao)
     
     main_quiz(score, total)
     
