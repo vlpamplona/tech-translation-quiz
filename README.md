@@ -14,6 +14,7 @@ Um quiz interativo em Python que utiliza a Inteligência Artificial do Google (G
 *   **Google Generative AI** (`google-generativeai`)
 *   **Modelo:** `gemini-2.5-flash` (Utilizando as capacidades mais recentes e experimentais da API do Google para maior velocidade e precisão).
 *   **Regex & JSON:** Para parsing e limpeza de dados da IA.
+*   **Biblioteca gtts:** Google Text-to-Speech: serviço de voz do Google para transformar texto em fala.
 
 ## 📋 Configuração e Uso
 
@@ -28,7 +29,8 @@ Para rodar o projeto, é necessário uma chave própria:
 ### 2. Como Funciona
 O script faz uma chamada ao modelo gemini-2.5-flash para obter a lista de termos. Se a cota gratuita do Google estiver esgotada no momento, o código captura o erro e avisa ao usuário. Se a cota estiver disponível, a chamada retorna os termos em português e suas respectivas traduções em ingles. Em seguida, o usuario será perguntado como se diz o termo em ingles; o usuário digita a resposta, o código verifica se a resposta está correta ou não. Se a resposta for INCORRETA, será mostrado ao usuário qual o termo correto em ingles. O usuário pode ouvir a pronúncia em inglês. No final será gerado um resumo dos erros e acertos. Assim, o usuário pode treinar seus conhecimentos e pronúncia dos termos em inglês.
 
-### 3. Instalação Google Generative AI
+### 3. Bibliotecas necessárias
 
 ```bash
 pip install google-generativeai
+pip install gtts
