@@ -68,7 +68,7 @@ def ouvir_pronuncia(texto):
     else:
         os.system("mpg123 -q audio.mp3") # para linux/mac
     
-    os.remove("audio.mp3")
+    #os.remove("audio.mp3") 
     
 def iniciar_quiz():
     global historico_termos
